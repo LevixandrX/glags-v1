@@ -5,7 +5,6 @@ import { FaVk, FaInstagram, FaTiktok } from "react-icons/fa";
 export default function Footer() {
   return (
     <footer className="bg-black text-white py-8 px-6 rounded-t-3xl border-t-2 border-t-purple-500">
-      {/* Основной контент футера: три столбца */}
       <div className="max-w-6xl mx-auto flex justify-between border-b border-gray-700 pb-6">
         {/* Первый столбец - выравнивание по правому краю */}
         <div className="flex-1 text-right">
@@ -43,7 +42,7 @@ export default function Footer() {
         {/* Разделитель */}
         <div className="border-l border-gray-700 mx-4"></div>
 
-        {/* Третий столбец - выравнивание по левому краю (оставляем как есть) */}
+        {/* Третий столбец - выравнивание по левому краю */}
         <div className="flex-1">
           <ul className="space-y-2">
             <li>
@@ -58,7 +57,7 @@ export default function Footer() {
 
       {/* Нижняя часть футера */}
       <div className="max-w-6xl mx-auto flex justify-between pt-6">
-        {/* Логотип и текст слева */}
+        {/* Лого и текст */}
         <div className="flex flex-col">
           <div className="flex items-center space-x-3 mb-4">
             <Image
@@ -77,7 +76,7 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Контакты и иконки справа - выравнивание по правому краю */}
+        {/* Контакты */}
         <div className="flex flex-col text-right">
           <p className="text-lg font-bold mb-2">
             Пн. – Пт. 10:00 - 19:00<br />
