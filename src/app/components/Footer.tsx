@@ -5,14 +5,14 @@ import { FaVk, FaInstagram, FaTiktok } from "react-icons/fa";
 export default function Footer() {
   return (
     <footer className="bg-black text-white py-8 px-4 md:px-6 rounded-t-3xl border-t-2 border-t-purple-500">
-      <div className="max-w-full md:max-w-6xl mx-auto border-b border-gray-700 pb-8">
+      <div className="max-w-full md:max-w-6xl mx-auto border-b border-gray-700 pb-8 md:pl-25">
         {/* Верхняя часть: Первые две колонки и третья (адаптивно) */}
         <div className="flex flex-col md:flex-row md:justify-center md:items-start space-y-6 md:space-y-0">
-          {/* Первые две колонки (рядом на мобильных) */}
-          <div className="flex flex-row justify-center md:flex-[2] space-x-4 md:space-x-0">
+          {/* Первые две колонки и третья (рядом на десктопе) */}
+          <div className="flex flex-row justify-center md:flex-[2] md:space-x-12 w-full md:w-auto">
             {/* Первая колонка */}
-            <div className="flex-1 text-right md:text-right">
-              <ul className="space-y-4">
+            <div className="flex-1 px-4">
+              <ul className="space-y-4 text-center md:text-right">
                 <li>
                   <Link
                     href="/tech"
@@ -44,11 +44,11 @@ export default function Footer() {
             </div>
 
             {/* Вертикальный разделитель */}
-            <div className="border-l border-gray-700 ml-1 mr-4 md:ml-20"></div>
+            <div className="border-l border-gray-700"></div>
 
             {/* Вторая колонка */}
-            <div className="flex-1 text-left md:text-center">
-              <ul className="space-y-4">
+            <div className="flex-1 px-4">
+              <ul className="space-y-4 text-center">
                 <li>
                   <Link
                     href="/order"
@@ -80,12 +80,12 @@ export default function Footer() {
             </div>
 
             {/* Вертикальный разделитель (только на десктопе между второй и третьей) */}
-            <div className="hidden md:block border-l border-gray-700 mr-15"></div>
+            <div className="hidden md:block border-l border-gray-700"></div>
           </div>
 
           {/* Третья колонка (ниже на мобильных, в ряду на десктопе) */}
-          <div className="flex-1 text-center md:text-left md:flex-[1]">
-            <ul className="space-y-4">
+          <div className="flex-1 px-4 md:ml-12">
+            <ul className="space-y-4 text-center md:text-left">
               <li>
                 <Link
                   href="/cart"
@@ -119,7 +119,7 @@ export default function Footer() {
               +7 (812) 642-32-17
             </p>
           </div>
-          <div className="flex justify-end space-x-4 mb-4">
+          <div className="flex justify-end space-y-4 space-x-6 mb-4">
             <Link href="https://vk.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">
               <FaVk size={36} className="md:w-6 md:h-6" />
             </Link>
@@ -132,7 +132,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Лого и текст (снизу на мобильных) */}
+        {/* Лogo и текст (снизу на мобильных) */}
         <div className="flex flex-col items-start order-last md:order-first">
           <Link href="/" className="flex items-center space-x-3 mb-4 group">
             <Image
