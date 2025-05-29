@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { FaStar, FaUser, FaShoppingCart, FaBars } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import { useState } from "react";
 
 export default function Header() {
@@ -14,16 +14,16 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-gradient-to-r from-[#6442d7]/80 to-[#8368b9]/80 backdrop-blur-lg text-white py-5 px-8 flex items-center justify-between rounded-b-3xl shadow-lg sticky top-0 z-50">
+      <header className="bg-gradient-to-r from-[#6E44FF]/80 to-[#9A7AD4]/80 backdrop-blur-lg text-white py-5 px-8 flex items-center justify-between rounded-b-3xl shadow-lg sticky top-0 z-50">
         {/* Лого и название сайта */}
         <div className="flex items-center space-x-4">
           <Link href="/" className="flex items-center group">
             <Image
-              src="/glags-logo_3.svg"
+              src="/glags-logo.svg"
               alt="GLAGS Logo"
-              width={48} // Уменьшено с 56 до 48 для мобильных
+              width={48}
               height={48}
-              className="md:w-[56px] md:h-[56px]" // Возвращаем 56 на md и выше
+              className="md:w-[56px] md:h-[56px]"
             />
             <span className="text-2xl md:text-3xl font-extrabold ml-3 transition-all duration-300 group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">
               GLAGS.RU
@@ -74,58 +74,93 @@ export default function Header() {
         <div className="flex items-center space-x-6">
           {/* Баллы и Войти для md-lg (768px-1024px) */}
           <div className="hidden md:flex lg:hidden items-center space-x-6">
-            <div className="flex items-center space-x-2 group">
-              <FaStar className="text-yellow-400 text-xl transition-transform duration-300 group-hover:rotate-12" />
+            <div className="flex items-center group">
+              <Image 
+                src="/icons/crystal.svg" 
+                alt="Crystal Icon" 
+                width={28} 
+                height={28} 
+                className="transition-transform duration-300 group-hover:rotate-12"/>
               <span className="text-lg font-medium">100</span>
             </div>
             <Link
               href="/login"
               className="flex items-center space-x-2 hover:text-white transition-all duration-300 group hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
             >
-              <FaUser className="text-xl transition-transform duration-300 group-hover:scale-110" />
+              <Image 
+                src="/icons/account_circle.svg" 
+                alt="Account Circle Icon" 
+                width={36} 
+                height={36}
+                className="transition-transform duration-300 group-hover:scale-110"/>
               <span className="text-lg font-medium">Войти</span>
             </Link>
           </div>
 
           {/* Кнопка приложения, баллы и Войти для lg-2xl (1024px-1536px) */}
           <div className="hidden lg:flex 2xl:hidden items-center space-x-6">
-            <button className="bg-pink-600 text-white px-6 py-2.5 rounded-full text-lg font-semibold hover:bg-pink-700 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/50">
+            <button className="bg-[#EA698B] text-white px-6 py-2.5 rounded-full text-lg font-semibold hover:bg-pink-700 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/50">
               Мобильное приложение
             </button>
-            <div className="flex items-center space-x-2 group">
-              <FaStar className="text-yellow-400 text-xl transition-transform duration-300 group-hover:rotate-12" />
+            <div className="flex items-center group">
+            <Image 
+                src="/icons/crystal.svg" 
+                alt="Crystal Icon" 
+                width={28} 
+                height={28} 
+                className="transition-transform duration-300 group-hover:rotate-12"/>
               <span className="text-lg font-medium">100</span>
             </div>
             <Link
               href="/login"
               className="flex items-center space-x-2 hover:text-white transition-all duration-300 group hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
             >
-              <FaUser className="text-xl transition-transform duration-300 group-hover:scale-110" />
+              <Image 
+                src="/icons/account_circle.svg" 
+                alt="Account Circle Icon" 
+                width={36} 
+                height={36}
+                className="transition-transform duration-300 group-hover:scale-110"/>
               <span className="text-lg font-medium">Войти</span>
             </Link>
           </div>
 
           {/* Полный набор иконок для 2xl и выше */}
           <div className="hidden 2xl:flex items-center space-x-6">
-            <button className="bg-pink-600 text-white px-6 py-2.5 rounded-full text-lg font-semibold hover:bg-pink-700 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/50">
+            <button className="bg-[#EA698B] text-white px-6 py-2.5 rounded-full text-lg font-semibold hover:bg-pink-700 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/50">
               Мобильное приложение
             </button>
-            <div className="flex items-center space-x-2 group">
-              <FaStar className="text-yellow-400 text-xl transition-transform duration-300 group-hover:rotate-12" />
+            <div className="flex items-center group">
+            <Image 
+                src="/icons/crystal.svg" 
+                alt="Crystal Icon" 
+                width={28} 
+                height={28} 
+                className="transition-transform duration-300 group-hover:rotate-12"/>
               <span className="text-lg font-medium">100</span>
             </div>
             <Link
               href="/login"
               className="flex items-center space-x-2 hover:text-white transition-all duration-300 group hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
             >
-              <FaUser className="text-xl transition-transform duration-300 group-hover:scale-110" />
+              <Image 
+                src="/icons/account_circle.svg" 
+                alt="Account Circle Icon" 
+                width={36} 
+                height={36}
+                className="transition-transform duration-300 group-hover:scale-110"/>
               <span className="text-lg font-medium">Войти</span>
             </Link>
             <Link
               href="/cart"
               className="flex items-center space-x-2 hover:text-white transition-all duration-300 group hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
             >
-              <FaShoppingCart className="text-xl transition-transform duration-300 group-hover:scale-110" />
+              <Image 
+                src="/icons/shopping_bag.svg" 
+                alt="Shopping Bag Icon" 
+                width={36} 
+                height={36}
+                className="transition-transform duration-300 group-hover:scale-110"/>
               <span className="text-lg font-medium">Корзина</span>
             </Link>
           </div>
@@ -136,7 +171,12 @@ export default function Header() {
               href="/cart"
               className="flex items-center hover:text-white transition-all duration-300 group hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
             >
-              <FaShoppingCart className="text-2xl transition-transform duration-300 group-hover:scale-110" />
+              <Image 
+                src="/icons/shopping_bag.svg" 
+                alt="Shopping Bag Icon" 
+                width={36} 
+                height={36}
+                className="transition-transform duration-300 group-hover:scale-110"/>
             </Link>
             <button className="text-white" onClick={toggleMenu}>
               <FaBars size={28} />
@@ -147,7 +187,7 @@ export default function Header() {
 
       {/* Мобильное меню */}
       <div
-        className={`fixed left-0 right-0 bg-gradient-to-b from-[#6442d7]/95 to-[#8368b9]/95 backdrop-blur-md text-white flex flex-col items-center space-y-5 py-8 pt-35 rounded-b-3xl shadow-lg transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] transform ${
+        className={`fixed left-0 right-0 bg-gradient-to-b from-[#6E44FF]/80 to-[#9A7AD4]/80 backdrop-blur-md text-white flex flex-col items-center space-y-5 py-8 pt-35 rounded-b-3xl shadow-lg transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] transform ${
           isMenuOpen ? "translate-y-0 opacity-100 z-40" : "-translate-y-full opacity-0 pointer-events-none z-40"
         }`}
       >
@@ -203,7 +243,7 @@ export default function Header() {
             Корзина
           </Link>
           <button
-            className="bg-pink-600 text-white px-6 py-2.5 rounded-full text-lg font-semibold hover:bg-pink-700 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/50"
+            className="bg-[#EA698B] text-white px-6 py-2.5 rounded-full text-lg font-semibold hover:bg-pink-700 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/50"
             onClick={toggleMenu}
           >
             Мобильное приложение
@@ -248,7 +288,7 @@ export default function Header() {
             Контакты
           </Link>
           <button
-            className="bg-pink-600 text-white px-6 py-2.5 rounded-full text-lg font-semibold hover:bg-pink-700 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/50"
+            className="bg-[#EA698B] text-white px-6 py-2.5 rounded-full text-lg font-semibold hover:bg-pink-700 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/50"
             onClick={toggleMenu}
           >
             Мобильное приложение

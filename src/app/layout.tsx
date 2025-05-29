@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Rubik } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const rubik = Rubik({
+  variable: "--font-rubik",
+  subsets: ["latin", "cyrillic"], // Поддержка кириллицы для русского текста
+  weight: ["400", "500", "700"], // Поддержка разных весов (regular, medium, bold)
 });
 
 export const metadata: Metadata = {
@@ -26,10 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>
+      <body className={`${rubik.variable} antialiased flex flex-col min-h-screen`}>
         <Header />
         <main className="flex-grow">{children}</main>
-          <Footer />
+        <Footer />
       </body>
     </html>
   );

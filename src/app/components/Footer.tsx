@@ -136,7 +136,7 @@ export default function Footer() {
         <div className="flex flex-col items-start order-last md:order-first">
           <Link href="/" className="flex items-center space-x-3 mb-4 group">
             <Image
-              src="/glags-logo_3.svg"
+              src="/glags-logo.svg"
               alt="GLAGS Logo"
               width={48}
               height={48}

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Banner() {
   return (
-    <section className="absolute top-0 left-0 w-full bg-gradient-to-r from-[#6442d7] to-[#8368b9] text-white pt-2 md:pt-10 md:pl-12 md:pr-0 rounded-b-3xl overflow-hidden min-h-[420px] md:min-h-[400px] lg:min-h-[400px] 2xl:min-h-[350px] z-10 pb-6 md:pb-0 shadow-[0_4px_8px_4px_rgba(53,3,101,0.5)]">
+    <section className="absolute top-0 left-0 w-full bg-gradient-to-r from-[#6E44FF] to-[#9A7AD4] text-white pt-2 md:pt-10 md:pl-12 md:pr-0 rounded-b-3xl overflow-hidden min-h-[420px] md:min-h-[400px] lg:min-h-[400px] 2xl:min-h-[350px] z-10 pb-6 md:pb-0 shadow-[0_4px_8px_4px_rgba(53,3,101,0.5)]">
       {/* Мобильная и планшетная версия (до lg) */}
       <div className="block lg:hidden h-full relative">
         {/* Фоновое изображение */}
@@ -200,16 +200,16 @@ export default function Banner() {
             />
             <Link
               href="/order"
-              className="absolute bottom-16 right-8 lg:right-20 md:mr-20 rounded-full text-lg font-semibold flex items-center border-4 border-white text-white backdrop-blur-md bg-white/10 hover:bg-white/20 transition-all duration-300"
+              className="absolute bottom-16 right-8 py-1 lg:right-20 md:mr-20 rounded-full text-lg font-semibold flex items-center border-4 border-white text-white backdrop-blur-md bg-white/10 hover:bg-white/20 transition-all duration-300"
             >
               <Image
                 src="/icons/truck-delivery.svg"
                 alt="Truck Icon"
-                width={60}
-                height={60}
+                width={65}
+                height={65}
                 className="pt-[10px] pb-[10px] pl-[10px] mr-5"
               />
-              <span className="text-2xl md:text-4xl flex-1 text-center pr-4 md:pr-6">
+              <span className="text-2xl md:text-4xl flex-1 text-center mr-3 pr-4 md:pr-6">
                 Заказать
               </span>
             </Link>
