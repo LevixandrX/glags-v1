@@ -14,7 +14,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-gradient-to-r from-[#6E44FF]/80 to-[#9A7AD4]/80 backdrop-blur-lg text-white py-5 px-8 flex items-center justify-between rounded-b-3xl shadow-lg sticky top-0 z-50">
+      <header className="bg-gradient-to-r from-[#6E44FF]/80 to-[#9A7AD4]/80 backdrop-blur-lg text-white py-5 px-8 flex items-center justify-between rounded-b-3xl sticky top-0 z-50">
         {/* Лого и название сайта */}
         <div className="flex items-center space-x-4">
           <Link href="/" className="flex items-center group">
