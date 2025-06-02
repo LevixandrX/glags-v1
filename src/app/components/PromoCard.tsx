@@ -36,10 +36,10 @@ export default function PromoCard({
   }, []);
 
   return (
-    <div className="w-[424px] relative promo-card">
+    <div className="w-[424px] 2xl:w-[480px] relative promo-card">
       {/* Черный блок с тенью */}
       <div
-        className="relative z-20 bg-black text-white rounded-3xl px-12 py-8 text-base md:text-lg text-center h-28 flex flex-col justify-center"
+        className="relative z-20 bg-black text-white rounded-3xl px-14 py-8 text-base md:text-lg 2xl:text-xl 3xl:text-2xl text-center h-28 2xl:h-32 flex flex-col justify-center"
         style={{
           boxShadow: `0 0 100px 30px ${shadowColor}`,
           backgroundColor: "#000000",
@@ -58,11 +58,11 @@ export default function PromoCard({
       <Link
         href="#"
         className={clsx(
-          "relative z-10 block text-center font-semibold py-6.5 w-full rounded-b-3xl",
+          "relative z-10 block text-center font-semibold py-6.5 w-full rounded-b-3xl text-base 2xl:text-lg 2xl:pt-7",
           linkBgColor,
           linkTextColor,
           "transition-all duration-500 ease-in-out",
-          isVisible ? "h-16 opacity-100" : "h-0 opacity-0"
+          isVisible ? "h-16 2xl:h-18 opacity-100" : "h-0 opacity-0"
         )}
         style={{ marginTop: "-1rem" }}
       >
