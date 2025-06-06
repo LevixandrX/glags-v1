@@ -14,7 +14,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-gradient-to-r from-[#6E44FF]/80 to-[#9A7AD4]/80 backdrop-blur-lg text-white py-5 px-8 flex items-center justify-between rounded-b-3xl sticky top-0 z-50">
+      <header className="bg-gradient-to-r from-[#6E44FF]/80 to-[#9A7AD4]/80 backdrop-blur-lg text-white py-5 px-8 flex items-center justify-between rounded-b-3xl sticky top-0 z-50 overflow-hidden">
         {/* Лого и название сайта */}
         <div className="flex items-center space-x-4">
           <Link href="/" className="flex items-center group">
@@ -34,7 +34,7 @@ export default function Header() {
         {/* Навигационное меню для десктопа */}
         <nav className="hidden 2xl:flex space-x-10 text-lg font-semibold">
           <Link
-            href="/glavnaya"
+            href="/"
             className="relative text-white hover:text-white transition-all duration-300 group hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
           >
             Главная
@@ -194,7 +194,7 @@ export default function Header() {
         {/* Показываем меню только на <md (до 768px) */}
         <div className="md:hidden flex flex-col items-center space-y-5">
           <Link
-            href="/glavnaya"
+            href="/"
             className="text-xl font-semibold hover:text-white transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
             onClick={toggleMenu}
           >
@@ -253,7 +253,7 @@ export default function Header() {
         {/* Показываем меню на md-lg (768px-1024px), исключая Войти и баллы */}
         <div className="hidden md:flex lg:hidden flex-col items-center space-y-5">
           <Link
-            href="/glavnaya"
+            href="/"
             className="text-xl font-semibold hover:text-white transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
             onClick={toggleMenu}
           >
@@ -298,7 +298,7 @@ export default function Header() {
         {/* Показываем меню на lg-2xl (1024px-1536px), исключая Войти, баллы и приложение */}
         <div className="hidden lg:flex 2xl:hidden flex-col items-center space-y-5">
           <Link
-            href="/glavnaya"
+            href="/"
             className="text-xl font-semibold hover:text-white transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
             onClick={toggleMenu}
           >

@@ -6,8 +6,8 @@ import Footer from "./components/Footer";
 
 const rubik = Rubik({
   variable: "--font-rubik",
-  subsets: ["latin", "cyrillic"], // Поддержка кириллицы для русского текста
-  weight: ["400", "500", "700"], // Поддержка разных весов (regular, medium, bold)
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -22,9 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={`${rubik.variable} antialiased flex flex-col min-h-screen`}>
+      <body className={`${rubik.variable} antialiased flex flex-col min-h-screen bg-[#0A0A0A] text-white relative z-0`}>
         <Header />
-        <main className="flex-grow">{children}</main>
+        <div className="z-10 flex-grow">{children}</div>
         <Footer />
       </body>
     </html>
