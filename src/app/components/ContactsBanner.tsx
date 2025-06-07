@@ -30,9 +30,9 @@ const textVariants = {
 };
 
 // Разбиваем заголовок на буквы
-const heroTitle = "О нас".split("");
+const heroTitle = "Контакты".split("");
 
-export default function AboutBanner() {
+export default function ContactsBanner() {
   return (
     <motion.section
       initial="hidden"
@@ -64,7 +64,7 @@ export default function AboutBanner() {
         variants={textVariants}
         className="text-xl md:text-2xl max-w-3xl mx-auto text-white/90 leading-relaxed"
       >
-        Более 15 лет превращаем огонь и стекло в волшебство. Ручная работа. Эксклюзив. GLAGS.
+        Всегда на связи. Ответим, поможем, доставим.
       </motion.p>
     </motion.section>
   );

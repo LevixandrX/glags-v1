@@ -30,9 +30,9 @@ const textVariants = {
 };
 
 // Разбиваем заголовок на буквы
-const heroTitle = "О нас".split("");
+const heroTitle = "Оплата и доставка".split("");
 
-export default function AboutBanner() {
+export default function DeliveryBanner() {
   return (
     <motion.section
       initial="hidden"
@@ -64,7 +64,7 @@ export default function AboutBanner() {
         variants={textVariants}
         className="text-xl md:text-2xl max-w-3xl mx-auto text-white/90 leading-relaxed"
       >
-        Более 15 лет превращаем огонь и стекло в волшебство. Ручная работа. Эксклюзив. GLAGS.
+        Безопасная оплата и доставка по всему миру — надёжно, быстро, удобно.
       </motion.p>
     </motion.section>
   );
