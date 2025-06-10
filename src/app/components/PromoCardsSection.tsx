@@ -6,17 +6,17 @@ import Image from "next/image";
 export default function PromoCardsSection() {
   return (
     <div className="py-12">
-      <div className="container mx-auto px-4 space-y-10">
+      <div className="container mx-auto px-4 space-y-16">
         {/* Первый ряд */}
-        <div className="flex flex-col lg:flex-row justify-center gap-10 lg:gap-17 xl:gap-35 items-center">
+        <div className="flex flex-col lg:flex-row justify-center gap-10 lg:gap-17 xl:gap-22 items-center">
           {/* Карточка 1 */}
           <div className="flex items-center">
             <Image
               src="/media/violet-basket.svg"
               alt=""
-              width={230}
-              height={230}
-              className="w-40 lg:w-36 xl:w-32 2xl:w-48 3xl:w-56 h-auto"
+              width={500}
+              height={500}
+              className="w-40 lg:w-36 xl:w-48 2xl:w-64 h-auto"
             />
             <PromoCard
               text="Наш каталог <b>обширен</b>, а пользоваться им <b>удобно</b>"
@@ -32,9 +32,9 @@ export default function PromoCardsSection() {
             <Image
               src="/media/thumb-up.svg"
               alt=""
-              width={230}
-              height={230}
-              className="w-40 lg:w-36 xl:w-32 2xl:w-48 3xl:w-56 h-auto"
+              width={500}
+              height={500}
+               className="w-40 lg:w-36 xl:w-48 2xl:w-64 h-auto"
             />
             <PromoCard
               text="<b>Более тысячи</b> довольных клиентов"
@@ -52,9 +52,9 @@ export default function PromoCardsSection() {
             <Image
               src="/media/quality.svg"
               alt=""
-              width={230}
-              height={230}
-              className="w-40 lg:w-36 xl:w-32 2xl:w-48 3xl:w-56 h-auto"
+              width={500}
+              height={500}
+              className="w-40 lg:w-36 xl:w-48 2xl:w-56 h-auto"
             />
             <PromoCard
               text="На рынке уже <b>более 15 лет</b>, а все наши товары – <b>ручная работа</b>"

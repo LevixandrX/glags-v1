@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaPhone, FaMapMarkerAlt, FaVk, FaInstagram } from "react-icons/fa";
+import { FaPhone, FaMapMarkerAlt, FaVk, FaInstagram, FaClock } from "react-icons/fa";
 import Link from "next/link";
 
 // Анимация для секций
@@ -20,85 +20,83 @@ export default function ContactDetailsSection() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="py-20 px-6 md:px-16 max-w-4xl mx-auto space-y-10"
+      className="py-20 px-6 md:px-16 max-w-5xl mx-auto space-y-12"
     >
       {/* Время работы */}
       <motion.div
         custom={0}
         variants={sectionVariants}
         transition={{ delay: 0 }}
-        className="bg-[#1f1f1f] p-6 rounded-2xl border border-white/10 space-y-4 text-white/80 shadow-md hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300"
+        className="bg-[#1f1f1f] p-6 rounded-xl border border-gray-700/30 shadow-sm hover:shadow-md hover:shadow-gray-600/20 transition-all duration-300 relative"
       >
-        <h2 className="text-2xl font-semibold text-purple-300">Время работы</h2>
-        <p>
-          Пн – Пт: 10:00–19:00<br />
-          Сб, Вс — выходные<br />
-          Письма принимаются круглосуточно
+        <h2 className="text-2xl font-bold text-gray-200 flex items-center gap-3 mb-6">
+          <FaClock className="text-gray-400" /> Время работы
+        </h2>
+        <p className="text-gray-400 text-lg leading-loose">
+          <strong>Рабочее время (по Москве):</strong> Пн – Пт: 10:00–19:00<br />
+          <strong>Выходные:</strong> Сб, Вс и официальные праздники<br />
+          <strong>Приём писем:</strong> Круглосуточно (обработка в рабочее время)
         </p>
       </motion.div>
 
-      {/* Телефоны */}
+      {/* Контакты (Телефоны + Адрес) */}
       <motion.div
         custom={1}
         variants={sectionVariants}
         transition={{ delay: 0.2 }}
-        className="bg-[#1f1f1f] p-6 rounded-2xl border border-white/10 text-white/80 shadow-md hover:shadow-lg hover:shadow-pink-500/20 transition-all duration-300"
+        className="grid md:grid-cols-2 gap-8"
       >
-        <h3 className="text-xl font-semibold text-white flex items-center gap-2">
-          <FaPhone /> Телефоны
-        </h3>
-        <p>+7 (812) 642 32 17 — опт и розница</p>
-        <p>+7 (812) 642 82 70 — эксклюзивные (временно не работает)</p>
+        <div className="bg-[#1f1f1f] p-6 rounded-xl border border-gray-700/30 shadow-sm hover:shadow-md hover:shadow-gray-600/20 transition-all duration-300">
+          <h3 className="text-xl font-semibold text-gray-200 flex items-center gap-2 mb-6">
+            <FaPhone className="text-gray-400" /> Телефоны
+          </h3>
+          <p className="text-gray-400 text-lg leading-loose">
+            +7 (812) 642 32 17 — опт и розница<br />
+            +7 (812) 642 82 70 — эксклюзивные (с 13:00, временно не принимаем)
+          </p>
+        </div>
+        <div className="bg-[#1f1f1f] p-6 rounded-xl border border-gray-700/30 shadow-sm hover:shadow-md hover:shadow-gray-600/20 transition-all duration-300">
+          <h3 className="text-xl font-semibold text-gray-200 flex items-center gap-2 mb-6">
+            <FaMapMarkerAlt className="text-gray-400" /> Адрес
+          </h3>
+          <p className="text-gray-400 text-lg leading-loose">
+            <strong>Координаты:</strong> 30.335919, 60.111791<br />
+            <strong>или:</strong> Долгота: 30°20&apos;9.31&quot;E, Широта: 60°6&apos;42.45&quot;N<br />
+            <strong>Транспорт:</strong> Маршрутка 441 (м. Проспект Просвещения), Автобусы 148 и 104 (м. Парнас), остановка «Берёзка»
+          </p>
+        </div>
       </motion.div>
 
-      {/* Адрес */}
+      {/* Реквизиты + Соцсети */}
       <motion.div
         custom={2}
         variants={sectionVariants}
         transition={{ delay: 0.4 }}
-        className="bg-[#1f1f1f] p-6 rounded-2xl border border-white/10 text-white/80 shadow-md hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300"
+        className="grid md:grid-cols-2 gap-8"
       >
-        <h3 className="text-xl font-semibold text-white flex items-center gap-2">
-          <FaMapMarkerAlt /> Адрес
-        </h3>
-        <p>60.111791, 30.335919<br />Остановка «Берёзка», м. Просвещения / Парнас</p>
-      </motion.div>
-
-      {/* Соцсети */}
-      <motion.div
-        custom={3}
-        variants={sectionVariants}
-        transition={{ delay: 0.6 }}
-        className="bg-[#1f1f1f] p-6 rounded-2xl border border-white/10 text-white/80 shadow-md hover:shadow-lg hover:shadow-violet-500/20 transition-all duration-300"
-      >
-        <h3 className="text-xl font-semibold text-white">Соцсети</h3>
-        <div className="flex items-center gap-6 text-3xl mt-2">
-          <Link href="https://vk.com/glags2" target="_blank" className="hover:text-violet-400 transition">
-            <FaVk />
-          </Link>
-          <Link href="https://www.instagram.com/glags.ru/" target="_blank" className="hover:text-pink-400 transition">
-            <FaInstagram />
-          </Link>
+        <div className="bg-[#1f1f1f] p-8 rounded-xl border border-gray-700/30 shadow-sm hover:shadow-md hover:shadow-gray-600/20 transition-all duration-300 col-span-1 md:col-span-2 lg:col-span-2">
+          <h4 className="text-xl font-semibold text-gray-200 mb-6">Реквизиты</h4>
+          <p className="text-gray-400 text-lg leading-loose">
+            <strong>Индивидуальный предприниматель:</strong> Левитина Оксана Юрьевна<br />
+            <strong>ИНН:</strong> 780210093241<br />
+            <strong>ОГРН:</strong> 312784701900171<br />
+            <strong>Банк:</strong> АО &quot;Т-БАНК&quot; (региональная сеть по всей России)<br />
+            <strong>Р/с:</strong> 40802810300006052315<br />
+            <strong>БИК:</strong> 7710140679<br />
+            <strong>Кор/счет:</strong> 30101810145250000974
+          </p>
         </div>
-      </motion.div>
-
-      {/* Реквизиты */}
-      <motion.div
-        custom={4}
-        variants={sectionVariants}
-        transition={{ delay: 0.8 }}
-        className="bg-[#1f1f1f] p-6 rounded-2xl border border-white/10 text-white/80 shadow-md hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300"
-      >
-        <h4 className="text-xl font-semibold text-white">Реквизиты</h4>
-        <p className="text-sm leading-relaxed">
-          ИП Левитина Оксана Юрьевна<br />
-          ИНН: 780210093241<br />
-          ОГРН: 312784701900171<br />
-          Банк: АО &quot;Т-БАНК&quot;<br />
-          Р/с: 40802810300006052315<br />
-          БИК: 7710140679<br />
-          Кор/счет: 30101810145250000974
-        </p>
+        <div className="bg-[#1f1f1f] w-[300px] p-6 rounded-xl border border-gray-700/30 shadow-sm hover:shadow-md hover:shadow-gray-600/20 transition-all duration-300 hidden md:block">
+          <h3 className="text-xl font-semibold text-gray-200 mb-6">Соцсети</h3>
+          <div className="flex items-center gap-4 text-2xl">
+            <Link href="https://vk.com/glags2" target="_blank" className="hover:text-gray-300 transition">
+              <FaVk />
+            </Link>
+            <Link href="https://www.instagram.com/glags.ru/" target="_blank" className="hover:text-gray-300 transition">
+              <FaInstagram />
+            </Link>
+          </div>
+        </div>
       </motion.div>
     </motion.section>
   );
