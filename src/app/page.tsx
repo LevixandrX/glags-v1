@@ -1,5 +1,5 @@
 import Banner from "./components/Banner";
-import ProductCard from "./components/ProductCard";
+import ProductSlider from "./components/ProductSlider";
 import PromoCardsSection from "./components/PromoCardsSection";
 
 export default function Home() {
@@ -7,9 +7,9 @@ export default function Home() {
     <>
       <Banner />
       <main className="flex-grow">
-        {/* Секция с карточкой товара */}
-        <section className="pl-50 pt-180 pb-50">
-          <ProductCard />
+        {/* Секция со слайдером товаров */}
+        <section className="pt-180 pb-50">
+          <ProductSlider />
         </section>
         {/* Секция с промо-карточками */}
         <section className="pb-80">

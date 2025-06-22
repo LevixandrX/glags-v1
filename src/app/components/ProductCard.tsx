@@ -3,7 +3,32 @@
 import Image from "next/image";
 import { useState } from "react";
 
-export default function ProductCard() {
+// Типизация пропсов
+interface ProductCardProps {
+  title: string;
+  price: number;
+  oldPrice?: number;
+  discount?: number;
+  image: string;
+  size: string;
+  count: number;
+  isLastVisible?: boolean;
+  isFirstVisible?: boolean;
+  isLastOverall?: boolean; // Новый проп для последней карточки
+}
+
+export default function ProductCard({
+  title,
+  price,
+  oldPrice,
+  discount,
+  image,
+  size,
+  count,
+  isLastVisible,
+  isFirstVisible,
+  isLastOverall,
+}: ProductCardProps) {
   const [inCart, setInCart] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [hasImage, setHasImage] = useState(true);
@@ -29,18 +54,39 @@ export default function ProductCard() {
     setHasImage(false);
   };
 
+  const getCardStyle = () => {
+    if (isLastVisible && !isLastOverall) {
+      return {
+        maskImage: "linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 95%)",
+        webkitMaskImage: "linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 95%)",
+      };
+    }
+    if (isFirstVisible) {
+      return {
+        maskImage: "linear-gradient(to left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 95%)",
+        webkitMaskImage: "linear-gradient(to left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 95%)",
+      };
+    }
+    return {};
+  };
+
   return (
-    <div className="rounded-xl w-[220px] p-3 flex flex-col items-center text-white">
+    <div
+      className={`rounded-xl w-[220px] p-3 flex flex-col items-center text-white ${
+        isLastVisible && !isLastOverall ? "last-slide-gradient" : ""
+      } ${isFirstVisible ? "first-slide-gradient" : ""}`}
+      style={getCardStyle()}
+    >
       {/* Фото и бейджи */}
       <div className="relative w-[196px] h-[196px] mb-2">
         {/* Квадратный фон под фото */}
         <div className="absolute inset-[-2px] bg-[#D9D9D9] rounded-[12px]"></div>
 
         {/* Изображение или заглушка */}
-        {hasImage ? (
+        {hasImage && image ? (
           <Image
-            src="/card-image1.png"
-            alt="Product"
+            src={image}
+            alt={title || "Изображение товара"}
             fill
             className="object-cover rounded-[10px]"
             onError={handleImageError}
@@ -49,7 +95,7 @@ export default function ProductCard() {
           <div className="w-full h-full bg-gray-700 rounded-[10px] flex flex-col items-center justify-center text-[#575757]">
             <Image
               src="/icons/no-image1.svg"
-              alt="No Image Icon"
+              alt="Нет изображения"
               width={50}
               height={50}
               className="mb-2 opacity-60"
@@ -67,32 +113,36 @@ export default function ProductCard() {
             height={13}
             className="pl-0.5"
           />
-          40 см
+          {size}
         </div>
 
         {/* Кол-во */}
         <div className="absolute top-7 right-1 bg-[#FF5656] text-white text-xs font-bold px-2.5 py-0.5 rounded-[5px]">
-          1 шт.
+          {count} шт.
         </div>
       </div>
 
       {/* Название */}
       <h3 className="text-left text-lg font-bold leading-tight mb-1 w-full min-h-[3rem] line-clamp-2 break-words">
-        Фигурка Дракончик
+        {title}
       </h3>
 
       {/* Цена и скидка */}
       <div className="w-full mb-2">
         <div className="flex flex-row items-start justify-start gap-2">
           <p className="text-[#FF5656] text-lg font-bold">
-            2 300 <span className="text-lg font-normal">₽</span>
+            {typeof price === "number" ? price.toLocaleString() : "-"} <span className="text-lg font-normal">₽</span>
           </p>
-          <span className="line-through text-white/60 text-[11px] translate-y-2">
-            2 900 ₽
-          </span>
-          <span className="bg-[#FF5656] px-1.5 py-0.5 rounded-[7px] text-white text-xs font-bold">
-            -25%
-          </span>
+          {typeof oldPrice === "number" && (
+            <span className="line-through text-white/60 text-[11px] translate-y-2">
+              {oldPrice.toLocaleString()} ₽
+            </span>
+          )}
+          {discount && (
+            <span className="bg-[#FF5656] px-1.5 py-0.5 rounded-[7px] text-white text-xs font-bold">
+              -{discount}%
+            </span>
+          )}
         </div>
       </div>
 
