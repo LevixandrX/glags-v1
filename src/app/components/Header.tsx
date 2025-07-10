@@ -4,9 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaBars } from "react-icons/fa";
 import { useState } from "react";
+import { useCart } from "./CartContext";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { items } = useCart();
+  const cartCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -144,7 +147,7 @@ export default function Header() {
               className="flex items-center space-x-2 hover:text-white transition-all duration-300 group hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
             >
               <Image 
-                src="/icons/account_circle.svg" 
+                src="/icons/account_circle.svg"
                 alt="Account Circle Icon" 
                 width={36} 
                 height={36}
@@ -153,15 +156,31 @@ export default function Header() {
             </Link>
             <Link
               href="/cart"
-              className="flex items-center space-x-2 hover:text-white transition-all duration-300 group hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+              className="flex items-center hover:text-white transition-all duration-300 group hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] relative"
             >
-              <Image 
-                src="/icons/shopping_bag.svg" 
-                alt="Shopping Bag Icon" 
-                width={36} 
-                height={36}
-                className="transition-transform duration-300 group-hover:scale-110"/>
-              <span className="text-lg font-medium">Корзина</span>
+              <span className="relative">
+                <Image 
+                  src="/icons/shopping_bag.svg" 
+                  alt="Shopping Bag Icon" 
+                  width={36} 
+                  height={36}
+                  className="transition-transform duration-300 group-hover:scale-110"
+                />
+                {cartCount > 0 && (
+                  <span
+                    className="absolute -top-2 -right-2 bg-[#FF5656] text-white text-xs font-bold rounded-full flex items-center justify-center shadow-lg select-none"
+                    style={{
+                      width: '26px',
+                      height: '26px',
+                      minWidth: '26px',
+                      fontSize: cartCount > 99 ? '11px' : '13px',
+                    }}
+                  >
+                    {cartCount > 99 ? '99+' : cartCount}
+                  </span>
+                )}
+              </span>
+              <span className="ml-2 text-lg font-medium select-none hidden 2xl:inline">Корзина</span>
             </Link>
           </div>
 
@@ -169,14 +188,29 @@ export default function Header() {
           <div className="flex items-center space-x-6 2xl:hidden">
             <Link
               href="/cart"
-              className="flex items-center hover:text-white transition-all duration-300 group hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+              className="flex items-center hover:text-white transition-all duration-300 group hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] relative"
             >
-              <Image 
-                src="/icons/shopping_bag.svg" 
-                alt="Shopping Bag Icon" 
-                width={36} 
-                height={36}
-                className="transition-transform duration-300 group-hover:scale-110"/>
+              <span className="relative">
+                <Image 
+                  src="/icons/shopping_bag.svg" 
+                  alt="Shopping Bag Icon" 
+                  width={36} 
+                  height={36}
+                  className="transition-transform duration-300 group-hover:scale-110"/>
+                {cartCount > 0 && (
+                  <span
+                    className="absolute -top-2 -right-2 bg-[#FF5656] text-white text-xs font-bold rounded-full flex items-center justify-center shadow-lg select-none"
+                    style={{
+                      width: '26px',
+                      height: '26px',
+                      minWidth: '26px',
+                      fontSize: cartCount > 99 ? '11px' : '13px',
+                    }}
+                  >
+                    {cartCount > 99 ? '99+' : cartCount}
+                  </span>
+                )}
+              </span>
             </Link>
             <button className="text-white" onClick={toggleMenu}>
               <FaBars size={28} />

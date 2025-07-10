@@ -23,3 +23,14 @@ body {
   color: var(--foreground);
   font-family: var(--font-rubik), Arial, Helvetica, sans-serif;
 }
+
+input[type=number], input.hide-number-arrows {
+  -moz-appearance: textfield;
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button,
+input.hide-number-arrows::-webkit-outer-spin-button,
+input.hide-number-arrows::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

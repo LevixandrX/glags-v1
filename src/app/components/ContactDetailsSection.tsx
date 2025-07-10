@@ -1,34 +1,25 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { FaPhone, FaMapMarkerAlt, FaVk, FaInstagram, FaClock } from "react-icons/fa";
 import Link from "next/link";
 
+// import { motion } from "framer-motion";
+
 // Анимация для секций
-const sectionVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: "easeOut" },
-  },
-};
+// const sectionVariants = {
+//   hidden: { opacity: 0, y: 50 },
+//   visible: {
+//     opacity: 1,
+//     y: 0,
+//     transition: { duration: 0.7, ease: "easeOut" },
+//   },
+// };
 
 export default function ContactDetailsSection() {
   return (
-    <motion.section
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      className="py-20 px-6 md:px-16 max-w-5xl mx-auto space-y-12"
-    >
+    <section className="py-20 px-6 md:px-16 max-w-5xl mx-auto space-y-12">
       {/* Время работы */}
-      <motion.div
-        custom={0}
-        variants={sectionVariants}
-        transition={{ delay: 0 }}
-        className="bg-[#1f1f1f] p-6 rounded-xl border border-gray-700/30 shadow-sm hover:shadow-md hover:shadow-gray-600/20 transition-all duration-300 relative"
-      >
+      <div className="bg-[#1f1f1f] p-6 rounded-xl border border-gray-700/30 shadow-sm hover:shadow-md hover:shadow-gray-600/20 transition-all duration-300 relative">
         <h2 className="text-2xl font-bold text-gray-200 flex items-center gap-3 mb-6">
           <FaClock className="text-gray-400" /> Время работы
         </h2>
@@ -37,15 +28,9 @@ export default function ContactDetailsSection() {
           <strong>Выходные:</strong> Сб, Вс и официальные праздники<br />
           <strong>Приём писем:</strong> Круглосуточно (обработка в рабочее время)
         </p>
-      </motion.div>
-
+      </div>
       {/* Контакты (Телефоны + Адрес) */}
-      <motion.div
-        custom={1}
-        variants={sectionVariants}
-        transition={{ delay: 0.2 }}
-        className="grid md:grid-cols-2 gap-8"
-      >
+      <div className="grid md:grid-cols-2 gap-8">
         <div className="bg-[#1f1f1f] p-6 rounded-xl border border-gray-700/30 shadow-sm hover:shadow-md hover:shadow-gray-600/20 transition-all duration-300">
           <h3 className="text-xl font-semibold text-gray-200 flex items-center gap-2 mb-6">
             <FaPhone className="text-gray-400" /> Телефоны
@@ -61,19 +46,13 @@ export default function ContactDetailsSection() {
           </h3>
           <p className="text-gray-400 text-lg leading-loose">
             <strong>Координаты:</strong> 30.335919, 60.111791<br />
-            <strong>или:</strong> Долгота: 30°20&apos;9.31&quot;E, Широта: 60°6&apos;42.45&quot;N<br />
+            <strong>или:</strong> Долгота: 30°20&apos;9.31&quot;E, <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Широта: 60°6&apos;42.45&quot;N<br />
             <strong>Транспорт:</strong> Маршрутка 441 (м. Проспект Просвещения), Автобусы 148 и 104 (м. Парнас), остановка «Берёзка»
           </p>
         </div>
-      </motion.div>
-
+      </div>
       {/* Реквизиты + Соцсети */}
-      <motion.div
-        custom={2}
-        variants={sectionVariants}
-        transition={{ delay: 0.4 }}
-        className="grid md:grid-cols-2 gap-8"
-      >
+      <div className="grid md:grid-cols-2 gap-8">
         <div className="bg-[#1f1f1f] p-8 rounded-xl border border-gray-700/30 shadow-sm hover:shadow-md hover:shadow-gray-600/20 transition-all duration-300 col-span-1 md:col-span-2 lg:col-span-2">
           <h4 className="text-xl font-semibold text-gray-200 mb-6">Реквизиты</h4>
           <p className="text-gray-400 text-lg leading-loose">
@@ -97,7 +76,7 @@ export default function ContactDetailsSection() {
             </Link>
           </div>
         </div>
-      </motion.div>
-    </motion.section>
+      </div>
+    </section>
   );
 }

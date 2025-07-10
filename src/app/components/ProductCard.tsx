@@ -2,9 +2,14 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import Link from 'next/link';
+import { useCart } from "./CartContext";
+import NoImagePlaceholder from "./NoImagePlaceholder";
+import { products } from '../catalog/products-mock';
 
 // Типизация пропсов
-interface ProductCardProps {
+export interface Product {
+  id: string;
   title: string;
   price: number;
   oldPrice?: number;
@@ -12,12 +17,10 @@ interface ProductCardProps {
   image: string;
   size: string;
   count: number;
-  isLastVisible?: boolean;
-  isFirstVisible?: boolean;
-  isLastOverall?: boolean; // Новый проп для последней карточки
 }
 
 export default function ProductCard({
+  id,
   title,
   price,
   oldPrice,
@@ -25,109 +28,95 @@ export default function ProductCard({
   image,
   size,
   count,
-  isLastVisible,
-  isFirstVisible,
-  isLastOverall,
-}: ProductCardProps) {
-  const [inCart, setInCart] = useState(false);
-  const [quantity, setQuantity] = useState(1);
+}: Product) {
+  const { items, addToCart, updateQuantity, removeFromCart } = useCart();
+
+  const productData = products.find((p) => p.id === id);
+  const slug = productData ? productData.slug : id;
+  const firstVariant = productData && productData.variants && productData.variants.length > 0 ? productData.variants[0].name : undefined;
+  // Формируем ссылку с query-параметрами для размера и варианта
+  let href = `/catalog/${slug}`;
+  const params = [];
+  // size только число
+  if (size) params.push(`size=${encodeURIComponent(size.replace(/[^0-9]/g, ''))}`);
+  if (firstVariant) params.push(`variant=${encodeURIComponent(firstVariant)}`);
+  if (params.length) href += `?${params.join('&')}`;
+
+  // Ищем товар в корзине по id и size (варианты не используются в карточке)
+  const cartItem = items.find(
+    (i) => i.id === id && i.size === size && (firstVariant ? i.variant === firstVariant : true)
+  );
+  const inCart = !!cartItem;
+  const quantity = cartItem?.quantity || 1;
+
   const [hasImage, setHasImage] = useState(true);
 
   const handleAddToCart = () => {
-    setInCart(true);
-    setQuantity(1);
+    addToCart({
+      id,
+      title,
+      image,
+      price,
+      size,
+      quantity: 1,
+      stock: count,
+      ...(firstVariant ? { variant: firstVariant } : {}),
+    });
   };
 
   const handleDecrease = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    } else {
-      setInCart(false);
+    if (cartItem && quantity > 1) {
+      updateQuantity(id, quantity - 1, size);
+    } else if (cartItem) {
+      removeFromCart(id, size);
     }
   };
 
   const handleIncrease = () => {
-    setQuantity(quantity + 1);
+    if (cartItem && quantity < count) {
+      updateQuantity(id, quantity + 1, size);
+    }
   };
 
   const handleImageError = () => {
     setHasImage(false);
   };
 
-  const getCardStyle = () => {
-    if (isLastVisible && !isLastOverall) {
-      return {
-        maskImage: "linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 95%)",
-        webkitMaskImage: "linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 95%)",
-      };
-    }
-    if (isFirstVisible) {
-      return {
-        maskImage: "linear-gradient(to left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 95%)",
-        webkitMaskImage: "linear-gradient(to left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 95%)",
-      };
-    }
-    return {};
-  };
-
   return (
-    <div
-      className={`rounded-xl w-[220px] p-3 flex flex-col items-center text-white ${
-        isLastVisible && !isLastOverall ? "last-slide-gradient" : ""
-      } ${isFirstVisible ? "first-slide-gradient" : ""}`}
-      style={getCardStyle()}
-    >
-      {/* Фото и бейджи */}
-      <div className="relative w-[196px] h-[196px] mb-2">
-        {/* Квадратный фон под фото */}
-        <div className="absolute inset-[-2px] bg-[#D9D9D9] rounded-[12px]"></div>
-
-        {/* Изображение или заглушка */}
-        {hasImage && image ? (
-          <Image
-            src={image}
-            alt={title || "Изображение товара"}
-            fill
-            className="object-cover rounded-[10px]"
-            onError={handleImageError}
-          />
-        ) : (
-          <div className="w-full h-full bg-gray-700 rounded-[10px] flex flex-col items-center justify-center text-[#575757]">
+    <div className="rounded-xl w-[220px] p-3 flex flex-col items-center text-white">
+      <Link href={href}>
+        <div className="relative w-[196px] h-[196px] mb-2">
+          {hasImage && image ? (
             <Image
-              src="/icons/no-image1.svg"
-              alt="Нет изображения"
-              width={50}
-              height={50}
-              className="mb-2 opacity-60"
+              src={image}
+              alt={title || "Изображение товара"}
+              fill
+              className="object-cover rounded-[10px]"
+              onError={handleImageError}
             />
-            <p className="text-sm font-medium z-0">Нет изображения</p>
+          ) : (
+            <NoImagePlaceholder width={196} height={196} iconSize={40} textSize="13px" textPadding="2px 0 0 0" bgColor="#D9D9D9" />
+          )}
+          <div className="absolute top-1 right-1 bg-[#6E44FF] text-white text-xs font-bold px-1.5 py-0.5 pr-2 rounded-[5px] flex items-center gap-1">
+            <Image
+              src="/icons/open_in_full.svg"
+              alt="Size Icon"
+              width={13}
+              height={13}
+              className="pl-0.5"
+            />
+            {size}
           </div>
-        )}
-
-        {/* Размер */}
-        <div className="absolute top-1 right-1 bg-[#6E44FF] text-white text-xs font-bold px-1.5 py-0.5 pr-2 rounded-[5px] flex items-center gap-1">
-          <Image
-            src="/icons/open_in_full.svg"
-            alt="Size Icon"
-            width={13}
-            height={13}
-            className="pl-0.5"
-          />
-          {size}
+          <div className="absolute top-7 right-1 bg-[#FF5656] text-white text-xs font-bold px-2.5 py-0.5 rounded-[5px]">
+            {count} шт.
+          </div>
         </div>
-
-        {/* Кол-во */}
-        <div className="absolute top-7 right-1 bg-[#FF5656] text-white text-xs font-bold px-2.5 py-0.5 rounded-[5px]">
-          {count} шт.
-        </div>
-      </div>
-
-      {/* Название */}
-      <h3 className="text-left text-lg font-bold leading-tight mb-1 w-full min-h-[3rem] line-clamp-2 break-words">
-        {title}
-      </h3>
-
-      {/* Цена и скидка */}
+      </Link>
+      <Link href={href}>
+        <h3 className="text-left text-lg font-bold leading-tight mb-1 w-full min-h-[3rem] line-clamp-2 break-words" style={{textAlign: 'left', justifyContent: 'flex-start', alignItems: 'flex-start', display: 'flex'}}>
+          {title}
+        </h3>
+      </Link>
       <div className="w-full mb-2">
         <div className="flex flex-row items-start justify-start gap-2">
           <p className="text-[#FF5656] text-lg font-bold">
@@ -145,13 +134,11 @@ export default function ProductCard({
           )}
         </div>
       </div>
-
-      {/* Кнопка или количество */}
       <div className="w-full flex justify-center">
         {!inCart ? (
           <button
             onClick={handleAddToCart}
-            className="bg-[#EA698B] text-white text-base font-semibold w-full py-1 rounded-[8px] flex items-center justify-center gap-2 hover:bg-[#d65f7f] transition-colors"
+            className="bg-[#EA698B] text-white text-base font-semibold w-full h-9 py-1 rounded-[12px] flex items-center justify-center gap-2 hover:bg-[#d65f7f] transition-colors"
           >
             <Image
               src="/icons/local_mall.svg"

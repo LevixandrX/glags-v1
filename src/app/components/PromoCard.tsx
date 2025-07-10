@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 
@@ -19,22 +18,6 @@ export default function PromoCard({
   linkTextColor,
   shadowColor,
 }: PromoCardProps) {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const card = document.querySelector(".promo-card");
-      if (card) {
-        const rect = card.getBoundingClientRect();
-        const isInViewport = rect.top >= 0 && rect.top <= window.innerHeight;
-        setIsVisible(isInViewport);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <div className="w-[424px] 2xl:w-[466px] relative">
       {/* Черный блок с тенью */}
@@ -61,8 +44,7 @@ export default function PromoCard({
           "relative z-10 block text-center font-semibold py-6.5 w-full rounded-b-4xl text-base 2xl:text-lg pt-11 2xl:pt-11",
           linkBgColor,
           linkTextColor,
-          "transition-all duration-500 ease-in-out",
-          isVisible ? "h-20 2xl:h-22 opacity-100" : "h-0 opacity-0"
+          "h-20 2xl:h-22"
         )}
         style={{ marginTop: "-2rem" }}
       >
