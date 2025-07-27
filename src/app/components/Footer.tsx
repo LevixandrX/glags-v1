@@ -1,10 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FaVk, FaInstagram, FaTiktok } from "react-icons/fa";
+import { useContext } from "react";
+import { ModalContext } from "./ModalContext";
+
+// Определяем тип для ModalContext
+interface ModalContextType {
+  showModal: boolean;
+  setShowModal: (value: boolean) => void;
+}
 
 export default function Footer() {
+  const { showModal } = useContext(ModalContext) as ModalContextType;
   return (
-    <footer className="bg-black text-white py-8 px-4 md:px-6 rounded-t-3xl border-t-2 border-t-purple-500 relative z-50 overflow-hidden">
+    <footer className={`bg-black text-white py-8 px-4 md:px-6 rounded-t-3xl border-t-2 border-t-purple-500 relative ${showModal ? 'z-0' : 'z-50'} overflow-hidden`}>
       <div className="max-w-full md:max-w-6xl mx-auto border-b border-gray-700 pb-8 md:pl-25">
         {/* Верхняя часть: Первые две колонки и третья (адаптивно) */}
         <div className="flex flex-col md:flex-row md:justify-center md:items-start space-y-6 md:space-y-0">
@@ -132,7 +141,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Лogo и текст (снизу на мобильных) */}
+        {/* Лого и текст (снизу на мобильных) */}
         <div className="flex flex-col items-start order-last md:order-first">
           <Link href="/" className="flex items-center space-x-3 mb-4 group">
             <Image

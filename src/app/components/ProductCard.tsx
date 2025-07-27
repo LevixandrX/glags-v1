@@ -66,15 +66,15 @@ export default function ProductCard({
 
   const handleDecrease = () => {
     if (cartItem && quantity > 1) {
-      updateQuantity(id, quantity - 1, size);
+      updateQuantity(id, quantity - 1, size, firstVariant);
     } else if (cartItem) {
-      removeFromCart(id, size);
+      removeFromCart(id, size, firstVariant);
     }
   };
 
   const handleIncrease = () => {
     if (cartItem && quantity < count) {
-      updateQuantity(id, quantity + 1, size);
+      updateQuantity(id, quantity + 1, size, firstVariant);
     }
   };
 
@@ -119,16 +119,16 @@ export default function ProductCard({
       </Link>
       <div className="w-full mb-2">
         <div className="flex flex-row items-start justify-start gap-2">
-          <p className="text-[#FF5656] text-lg font-bold">
-            {typeof price === "number" ? price.toLocaleString() : "-"} <span className="text-lg font-normal">₽</span>
+          <p className={typeof oldPrice === "number" || discount ? "text-[#FF5656] text-[18px] font-bold" : "text-white text-[18px] font-bold"}>
+            {typeof price === "number" ? price.toLocaleString() : "-"} <span className="text-lg font-bold">₽</span>
           </p>
           {typeof oldPrice === "number" && (
-            <span className="line-through text-white/60 text-[11px] translate-y-2">
+            <span className="line-through font-semibold text-white/60 text-[11px] translate-y-2">
               {oldPrice.toLocaleString()} ₽
             </span>
           )}
           {discount && (
-            <span className="bg-[#FF5656] px-1.5 py-0.5 rounded-[7px] text-white text-xs font-bold">
+            <span className="bg-[#FF5656] px-2 py-0.5 rounded-[7px] text-white text-xs font-bold">
               -{discount}%
             </span>
           )}
