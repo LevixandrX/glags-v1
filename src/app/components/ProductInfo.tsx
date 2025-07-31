@@ -91,7 +91,7 @@ export default function ProductInfo({
       <ProductDetails characteristics={product.characteristics} />
       {/* Описание */}
       <button
-        className="mt-4 flex items-center gap-1 bg-[#D9D9D940] text-white text-base rounded-[16px] px-6 py-2 w-fit hover:bg-[#D9D9D980] transition-colors"
+        className="mt-4 flex items-center gap-1 bg-[#D9D9D940] text-white text-base rounded-[16px] px-6 py-2 w-fit hover:bg-[#D9D9D980] transition-colors cursor-pointer"
         type="button"
         onClick={onShowDescriptionModal}
       >

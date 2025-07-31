@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 interface CartItem {
   id: string;
+  title: string;
+  image: string;
+  price: number;
   size: string;
   variant: string;
   quantity: number;
+  stock: number;
 }
 
 interface AddToCartCardProps {
@@ -76,7 +81,7 @@ const AddToCartCard: React.FC<AddToCartCardProps> = ({
   };
 
   return (
-    <div className="w-full max-w-[480px] min-w-[460px] bg-[#0F0F0F] rounded-[44px] shadow-[0_0_100px_32px_rgba(64,38,154,0.25)] flex flex-col items-center px-5 pt-12 pb-7 mx-auto select-none">
+    <div className="w-full max-w-[480px] min-w-[460px] bg-[#0F0F0F] rounded-[52px] shadow-[0_0_100px_35px_rgba(64,38,154,0.25)] flex flex-col items-center px-5 pt-12 pb-7 mx-auto select-none">
       {/* Цена и скидка */}
       <div className="mb-16 ml-5 self-start">
         <div className="flex items-start gap-3 flex-wrap">
@@ -104,7 +109,7 @@ const AddToCartCard: React.FC<AddToCartCardProps> = ({
         {!cartItem ? (
           <button
             onClick={handleAddToCart}
-            className="w-full min-h-[52px] bg-[#EA698B] hover:bg-[#d65f7f] transition-colors rounded-2xl text-white font-semibold text-xl flex items-center justify-center gap-3 shadow-lg"
+            className="w-full min-h-[52px] bg-[#EA698B] hover:bg-[#d65f7f] transition-colors rounded-2xl text-white font-medium text-xl flex items-center justify-center gap-3 shadow-lg cursor-pointer"
           >
             <Image
               src="/icons/local_mall.svg"
@@ -118,7 +123,7 @@ const AddToCartCard: React.FC<AddToCartCardProps> = ({
           <div className="flex flex-row items-center justify-between gap-4 w-full min-h-[52px]">
             <a
               href="/cart"
-              className="h-[52px] px-4 flex items-center justify-center bg-[#EA698B]/25 hover:bg-[#EA698B]/40 transition-colors rounded-2xl text-[#EA698B] font-semibold text-lg whitespace-nowrap text-center shadow-md"
+              className="h-[52px] px-4 flex items-center justify-center bg-[#EA698B]/25 hover:bg-[#EA698B]/40 transition-colors rounded-2xl text-[#EA698B] font-medium text-lg whitespace-nowrap text-center shadow-md"
             >
               Перейти в корзину
             </a>
@@ -131,7 +136,7 @@ const AddToCartCard: React.FC<AddToCartCardProps> = ({
                       : cartItem &&
                         removeFromCart(productId, sizeLabel, variantName)
                   }
-                  className={`w-12 h-10 rounded-xl text-white font-bold text-2xl flex items-center justify-center transition-colors
+                  className={`w-12 h-10 rounded-xl text-white font-bold text-2xl flex items-center justify-center transition-colors cursor-pointer
                     ${
                       quantity < 2
                         ? "bg-[#FF5656] hover:bg-[#e04d4d]"
@@ -165,7 +170,7 @@ const AddToCartCard: React.FC<AddToCartCardProps> = ({
                 />
                 <button
                   onClick={handlePlusClick}
-                  className={`w-12 h-10 bg-[#EA698B] hover:bg-[#d65f7f] transition-colors rounded-xl text-white font-bold text-2xl flex items-center justify-center${
+                  className={`w-12 h-10 bg-[#EA698B] hover:bg-[#d65f7f] transition-colors rounded-xl text-white font-bold text-2xl flex items-center cursor-pointer justify-center${
                     quantity >= maxQty ? " opacity-60 cursor-not-allowed" : ""
                   }`}
                   tabIndex={0}
@@ -173,32 +178,40 @@ const AddToCartCard: React.FC<AddToCartCardProps> = ({
                   +
                 </button>
               </div>
-              {showMaxMsg && (
-                <div className="absolute left-1/2 -translate-x-1/2 mt-16 z-10">
-                  <div className="relative">
-                    <div className="absolute left-1/2 -top-2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-[#23232B]" />
-                    <div className="bg-[#23232B] text-white text-sm rounded-xl px-4 py-3 shadow-lg min-w-[220px] text-center">
-                      Выбрано максимальное количество, доступное для заказа
+              <AnimatePresence>
+                {showMaxMsg && (
+                  <motion.div
+                    className="absolute left-1/2 -translate-x-1/2 mt-16 z-10"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="relative">
+                      <div className="absolute left-1/2 -top-2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-[#23232B]" />
+                      <div className="bg-[#23232B] text-white text-sm rounded-xl px-4 py-3 shadow-lg min-w-[220px] text-center">
+                        Выбрано максимальное количество, доступное для заказа
+                      </div>
                     </div>
-                  </div>
-                </div>
-              )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         )}
         <button
           onClick={handleBuyNow}
-          className="w-full min-h-[52px] bg-[#EA698B]/25 hover:bg-[#EA698B]/40 transition-colors rounded-2xl text-[#EA698B] font-semibold text-xl flex items-center justify-center gap-3 shadow-md"
+          className="w-full min-h-[52px] bg-[#EA698B]/25 hover:bg-[#EA698B]/40 transition-colors rounded-2xl text-[#EA698B] font-medium text-xl flex items-center justify-center mb-7 gap-3 shadow-md cursor-pointer"
         >
           Купить сейчас
         </button>
       </div>
       {/* Остаток */}
       {stock < 5 && (
-        <div className="flex items-center justify-center text-[#FF5656] font-bold text-lg mt-7 mb-2 text-center">
+        <div className="flex items-center justify-center text-[#FF5656] font-semibold text-xl mb-2 text-center">
           <span className="flex items-center mr-2">
             <span
-              className="inline-flex h-[10px] w-[10px] rounded-full bg-[#FF5656]"
+              className="h-[10px] w-[10px] rounded-full bg-[#FF5656]"
               style={{
                 animation: "pulse-dot 1.5s infinite ease-in-out",
               }}

@@ -71,14 +71,14 @@ export default function ProductGallery({
         {showMainImageArrows && (
           <>
             <button
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-[#6E44FF]/80 hover:bg-[#6E44FF] rounded-full p-2 z-10 shadow-lg transition-all"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-[#6E44FF]/80 hover:bg-[#6E44FF] rounded-full p-2 z-10 shadow-lg transition-all cursor-pointer"
               onClick={() => setSelectedImage((prev) => prev > 0 ? prev - 1 : images.length - 1)}
               aria-label="Предыдущее фото"
             >
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </button>
             <button
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#6E44FF]/80 hover:bg-[#6E44FF] rounded-full p-2 z-10 shadow-lg transition-all"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#6E44FF]/80 hover:bg-[#6E44FF] rounded-full p-2 z-10 shadow-lg transition-all cursor-pointer"
               onClick={() => setSelectedImage((prev) => prev < images.length - 1 ? prev + 1 : 0)}
               aria-label="Следующее фото"
             >
@@ -111,7 +111,7 @@ export default function ProductGallery({
           {/* Стрелка влево */}
           {showSliderControls && thumbsIndex > 0 && (
             <button
-              className="absolute -left-2 top-1/2 -translate-y-1/2 bg-[#6E44FF]/80 hover:bg-[#6E44FF] rounded-full p-2 z-20 shadow-lg transition-all"
+              className="absolute -left-2 top-1/2 -translate-y-1/2 bg-[#6E44FF]/80 hover:bg-[#6E44FF] rounded-full p-2 z-20 shadow-lg transition-all cursor-pointer"
               style={{ width: 40, height: 40 }}
               onClick={() => {
                 if (thumbsSwiperRef.current) {
@@ -126,7 +126,7 @@ export default function ProductGallery({
           {/* Стрелка вправо */}
           {showSliderControls && !isThumbsEnd && (
             <button
-              className="absolute -right-2 top-1/2 -translate-y-1/2 bg-[#6E44FF]/80 hover:bg-[#6E44FF] rounded-full p-2 z-20 shadow-lg transition-all"
+              className="absolute -right-2 top-1/2 -translate-y-1/2 bg-[#6E44FF]/80 hover:bg-[#6E44FF] rounded-full p-2 z-20 shadow-lg transition-all cursor-pointer"
               style={{ width: 40, height: 40 }}
               onClick={() => {
                 if (thumbsSwiperRef.current) {
@@ -168,7 +168,7 @@ export default function ProductGallery({
                 >
                   <button
                     className={clsx(
-                      'w-[100px] h-[100px] rounded-xl overflow-hidden border-2 transition-all',
+                      'w-[100px] h-[100px] rounded-xl overflow-hidden border-2 transition-all cursor-pointer',
                       idx === selectedImage ? 'border-[#6E44FF] scale-105 shadow-[0_0_32px_0_rgba(110,68,255,0.5)]' : 'border-transparent opacity-70 hover:opacity-100',
                       idx === 0 && thumbsIndex === 0 && !isThumbsSliding ? '!ml-0' : ''
                     )}

@@ -9,12 +9,12 @@ interface SizeSelectorProps {
 export default function SizeSelector({ sizes, selectedSize, setSelectedSize }: SizeSelectorProps) {
   return (
     <div>
-      <div className="text-gray-400 text-lg font-medium mb-2">Размеры</div>
+      <div className="text-white/50 text-lg mb-3">Размеры</div>
       <div className="flex flex-row gap-3">
         {sizes.map((size, idx) => (
           <button
             key={size.label}
-            className="relative w-[87px] h-[35px] flex items-center justify-center p-0 bg-transparent group"
+            className="relative w-[87px] h-[35px] flex items-center justify-center p-0 bg-transparent group cursor-pointer"
             style={{ outline: 'none', border: 'none' }}
             onClick={() => setSelectedSize(idx)}
           >

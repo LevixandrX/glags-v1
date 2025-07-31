@@ -27,8 +27,11 @@ export default function VariantSlider({ variants, selectedVariant, setSelectedVa
   const showSliderControls = variants.length > 5;
   return (
     <>
-      <div className="mb-2 text-gray-300 text-base font-medium">Вариант: {variants[selectedVariant]?.name}</div>
-      <div className="relative w-full max-w-[440px] min-h-[92px]">
+      <div className="mb-2 text-lg">
+      <span className="text-white/50">Вариант: </span>
+      <span className="text-white">{variants[selectedVariant]?.name}</span>
+      </div>
+      <div className="relative w-full max-w-[440px] min-h-[92px] mb-4">
         {/* Затемнения */}
         {showSliderControls && !((variantThumbsIndex === 0) && !variantIsSliding) && (
           <div
@@ -51,7 +54,7 @@ export default function VariantSlider({ variants, selectedVariant, setSelectedVa
         {/* Стрелки */}
         {showSliderControls && variantThumbsIndex > 0 && (
           <button
-            className="absolute -left-2 top-1/2 -translate-y-1/2 bg-[#6E44FF] hover:bg-[#6E44FF] rounded-full p-2 z-20 shadow-lg transition-all"
+            className="absolute -left-2 top-1/2 -translate-y-1/2 bg-[#6E44FF] hover:bg-[#6E44FF] rounded-full p-2 z-20 shadow-lg transition-all cursor-pointer"
             style={{ width: 40, height: 40 }}
             onClick={() => {
               if (variantSwiperRef.current) {
@@ -65,7 +68,7 @@ export default function VariantSlider({ variants, selectedVariant, setSelectedVa
         )}
         {showSliderControls && !variantIsEnd && (
           <button
-            className="absolute -right-2 top-1/2 -translate-y-1/2 bg-[#6E44FF] hover:bg-[#6E44FF] rounded-full p-2 z-20 shadow-lg transition-all"
+            className="absolute -right-2 top-1/2 -translate-y-1/2 bg-[#6E44FF] hover:bg-[#6E44FF] rounded-full p-2 z-20 shadow-lg transition-all cursor-pointer"
             style={{ width: 40, height: 40 }}
             onClick={() => {
               if (variantSwiperRef.current) {
@@ -104,7 +107,7 @@ export default function VariantSlider({ variants, selectedVariant, setSelectedVa
             {variants.map((variant, idx) => (
               <SwiperSlide
                 key={variant.name}
-                className="!w-[80px] !h-[92px] flex-shrink-0 flex items-center justify-center py-1"
+                className="!w-[80px] !h-[92px] flex-shrink-0 flex items-center justify-center py-1 cursor-pointer"
               >
                 <div
                   className={clsx(

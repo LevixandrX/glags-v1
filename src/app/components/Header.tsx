@@ -5,18 +5,13 @@ import Image from "next/image";
 import { FaBars } from "react-icons/fa";
 import { useState, useContext } from "react";
 import { useCart } from "./CartContext";
-import { ModalContext } from "./ModalContext";
-
-interface ModalContextType {
-  showModal: boolean;
-  setShowModal: (value: boolean) => void;
-}
+import { ModalContext, ModalContextType } from "./ModalContext";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { items } = useCart();
   const cartCount = items.reduce((sum, item) => sum + item.quantity, 0);
-  const { showModal } = useContext(ModalContext) as ModalContextType;
+  const { isOpen } = useContext(ModalContext) as ModalContextType;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -24,7 +19,11 @@ export default function Header() {
 
   return (
     <>
-      <header className={`bg-gradient-to-r from-[#6E44FF]/80 to-[#9A7AD4]/80 backdrop-blur-lg text-white py-5 px-8 flex items-center justify-between rounded-b-3xl sticky top-0 ${showModal ? 'z-0' : 'z-50'} overflow-hidden`}>
+      <header
+        className={`bg-gradient-to-r from-[#6E44FF]/80 to-[#9A7AD4]/80 backdrop-blur-lg text-white py-5 px-8 flex items-center justify-between rounded-b-3xl sticky top-0 ${
+          isOpen ? "z-30" : "z-50"
+        } overflow-hidden`}
+      >
         {/* Лого и название сайта */}
         <div className="flex items-center space-x-4">
           <Link href="/" className="flex items-center group">
@@ -85,24 +84,26 @@ export default function Header() {
           {/* Баллы и Войти для md-lg (768px-1024px) */}
           <div className="hidden md:flex lg:hidden items-center space-x-6">
             <div className="flex items-center group">
-              <Image 
-                src="/icons/crystal.svg" 
-                alt="Crystal Icon" 
-                width={28} 
-                height={28} 
-                className="transition-transform duration-300 group-hover:rotate-12"/>
+              <Image
+                src="/icons/crystal.svg"
+                alt="Crystal Icon"
+                width={28}
+                height={28}
+                className="transition-transform duration-300 group-hover:rotate-12"
+              />
               <span className="text-lg font-medium">100</span>
             </div>
             <Link
               href="/login"
               className="flex items-center space-x-2 hover:text-white transition-all duration-300 group hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
             >
-              <Image 
-                src="/icons/account_circle.svg" 
-                alt="Account Circle Icon" 
-                width={36} 
+              <Image
+                src="/icons/account_circle.svg"
+                alt="Account Circle Icon"
+                width={36}
                 height={36}
-                className="transition-transform duration-300 group-hover:scale-110"/>
+                className="transition-transform duration-300 group-hover:scale-110"
+              />
               <span className="text-lg font-medium">Войти</span>
             </Link>
           </div>
@@ -113,24 +114,26 @@ export default function Header() {
               Мобильное приложение
             </button>
             <div className="flex items-center group">
-            <Image 
-                src="/icons/crystal.svg" 
-                alt="Crystal Icon" 
-                width={28} 
-                height={28} 
-                className="transition-transform duration-300 group-hover:rotate-12"/>
+              <Image
+                src="/icons/crystal.svg"
+                alt="Crystal Icon"
+                width={28}
+                height={28}
+                className="transition-transform duration-300 group-hover:rotate-12"
+              />
               <span className="text-lg font-medium">100</span>
             </div>
             <Link
               href="/login"
               className="flex items-center space-x-2 hover:text-white transition-all duration-300 group hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
             >
-              <Image 
-                src="/icons/account_circle.svg" 
-                alt="Account Circle Icon" 
-                width={36} 
+              <Image
+                src="/icons/account_circle.svg"
+                alt="Account Circle Icon"
+                width={36}
                 height={36}
-                className="transition-transform duration-300 group-hover:scale-110"/>
+                className="transition-transform duration-300 group-hover:scale-110"
+              />
               <span className="text-lg font-medium">Войти</span>
             </Link>
           </div>
@@ -141,24 +144,26 @@ export default function Header() {
               Мобильное приложение
             </button>
             <div className="flex items-center group">
-            <Image 
-                src="/icons/crystal.svg" 
-                alt="Crystal Icon" 
-                width={28} 
-                height={28} 
-                className="transition-transform duration-300 group-hover:rotate-12"/>
+              <Image
+                src="/icons/crystal.svg"
+                alt="Crystal Icon"
+                width={28}
+                height={28}
+                className="transition-transform duration-300 group-hover:rotate-12"
+              />
               <span className="text-lg font-medium">100</span>
             </div>
             <Link
               href="/login"
               className="flex items-center space-x-2 hover:text-white transition-all duration-300 group hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
             >
-              <Image 
+              <Image
                 src="/icons/account_circle.svg"
-                alt="Account Circle Icon" 
-                width={36} 
+                alt="Account Circle Icon"
+                width={36}
                 height={36}
-                className="transition-transform duration-300 group-hover:scale-110"/>
+                className="transition-transform duration-300 group-hover:scale-110"
+              />
               <span className="text-lg font-medium">Войти</span>
             </Link>
             <Link
@@ -166,10 +171,10 @@ export default function Header() {
               className="flex items-center hover:text-white transition-all duration-300 group hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] relative"
             >
               <span className="relative">
-                <Image 
-                  src="/icons/shopping_bag.svg" 
-                  alt="Shopping Bag Icon" 
-                  width={36} 
+                <Image
+                  src="/icons/shopping_bag.svg"
+                  alt="Shopping Bag Icon"
+                  width={36}
                   height={36}
                   className="transition-transform duration-300 group-hover:scale-110"
                 />
@@ -177,13 +182,13 @@ export default function Header() {
                   <span
                     className="absolute -top-2 -right-2 bg-[#FF5656] text-white text-xs font-bold rounded-full flex items-center justify-center shadow-lg select-none"
                     style={{
-                      width: '26px',
-                      height: '26px',
-                      minWidth: '26px',
-                      fontSize: cartCount > 99 ? '11px' : '13px',
+                      width: "26px",
+                      height: "26px",
+                      minWidth: "26px",
+                      fontSize: cartCount > 99 ? "11px" : "13px",
                     }}
                   >
-                    {cartCount > 99 ? '99+' : cartCount}
+                    {cartCount > 99 ? "99+" : cartCount}
                   </span>
                 )}
               </span>
@@ -198,23 +203,24 @@ export default function Header() {
               className="flex items-center hover:text-white transition-all duration-300 group hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] relative"
             >
               <span className="relative">
-                <Image 
-                  src="/icons/shopping_bag.svg" 
-                  alt="Shopping Bag Icon" 
-                  width={36} 
+                <Image
+                  src="/icons/shopping_bag.svg"
+                  alt="Shopping Bag Icon"
+                  width={36}
                   height={36}
-                  className="transition-transform duration-300 group-hover:scale-110"/>
+                  className="transition-transform duration-300 group-hover:scale-110"
+                />
                 {cartCount > 0 && (
                   <span
                     className="absolute -top-2 -right-2 bg-[#FF5656] text-white text-xs font-bold rounded-full flex items-center justify-center shadow-lg select-none"
                     style={{
-                      width: '26px',
-                      height: '26px',
-                      minWidth: '26px',
-                      fontSize: cartCount > 99 ? '11px' : '13px',
+                      width: "26px",
+                      height: "26px",
+                      minWidth: "26px",
+                      fontSize: cartCount > 99 ? "11px" : "13px",
                     }}
                   >
-                    {cartCount > 99 ? '99+' : cartCount}
+                    {cartCount > 99 ? "99+" : cartCount}
                   </span>
                 )}
               </span>
