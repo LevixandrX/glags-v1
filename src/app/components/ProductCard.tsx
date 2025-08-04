@@ -57,6 +57,7 @@ export default function ProductCard({
       title,
       image,
       price,
+      oldPrice,
       size,
       quantity: 1,
       stock: count,
