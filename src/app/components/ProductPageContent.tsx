@@ -145,6 +145,7 @@ export default function ProductPageContent() {
       title: product.title,
       image: images[0],
       price: product.price,
+      oldPrice: product.oldPrice,
       size: sizeLabel,
       variant: variantName,
       quantity: quantity,
